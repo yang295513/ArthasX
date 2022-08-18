@@ -49,11 +49,6 @@ public class SpyAPI {
         spyInstance.afterException(clazz, args, throwable);
     }
 
-    public static void test() {
-
-    }
-
-
     public static abstract class AbstractSpy {
         public abstract void beforeInvoke(Class<?> clazz,
                                           Object[] args);

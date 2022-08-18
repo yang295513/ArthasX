@@ -8,16 +8,16 @@ import java.arthasx.SpyAPI.AbstractSpy;
 public class SpyImpl extends AbstractSpy {
     @Override
     public void beforeInvoke(Class<?> clazz, Object[] args) {
-        ArthasXCoreBootstrap.responseMessage("{beforeInvoke:" + JSON.toJSONString(args) + "}");
+        ArthasXCoreBootstrap.responseMessage("[{\"beforeInvoke\":" + JSON.toJSONString(args) + "},");
     }
 
     @Override
     public void afterInvoke(Class<?> clazz, Object[] args, Object returnObject) {
-        ArthasXCoreBootstrap.responseMessage("{afterInvoke:" + JSON.toJSONString(args) + "}");
+        ArthasXCoreBootstrap.responseMessage("{\"afterInvoke\":" + JSON.toJSONString(returnObject) + "}]");
     }
 
     @Override
     public void afterException(Class<?> clazz, Object[] args, Throwable throwable) {
-        ArthasXCoreBootstrap.responseMessage("{afterException:" + JSON.toJSONString(args) + "}");
+        ArthasXCoreBootstrap.responseMessage("{\"afterException\":" + JSON.toJSONString(args) + "}]");
     }
 }

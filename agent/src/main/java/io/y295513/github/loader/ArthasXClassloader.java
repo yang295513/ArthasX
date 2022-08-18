@@ -17,13 +17,13 @@ public class ArthasXClassloader extends URLClassLoader {
             return loadedClass;
         }
 
-        // 优先从parent（SystemClassLoader）里加载系统类，避免抛出ClassNotFoundException
+        // 优先从parent（ExtClassLoader -> BootstrapClassLoader）里加载系统类，避免抛出ClassNotFoundException
         if (name != null && (name.startsWith("sun.") || name.startsWith("java."))) {
             // 使用父类的loadClass，父类的loadClass遵循双亲委派模型
             return super.loadClass(name, resolve);
         }
         try {
-            // ArthasXCore类触发类加载，非ArthasX抛出ClassNotFoundException
+            // 加载ArthasXCore和Core依赖的三方的加载，不符合抛出ClassNotFoundException
             Class<?> aClass = findClass(name);
             if (resolve) {
                 resolveClass(aClass);

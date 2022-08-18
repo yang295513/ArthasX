@@ -24,8 +24,6 @@ public class CommendService implements Runnable {
             ArthasXCoreBootstrap bootstrap = ArthasXCoreBootstrap.getInstance();
             CommandFactory factory = bootstrap.getCommandFactory();
             NettyServerHandler nettyServerHandler = bootstrap.getNettyServerHandler();
-//            Enhancer enhancer = Enhancer.getInstance(ins);
-//            ins.addTransformer(enhancer);
             while (true) {
                 try {
                     String command = nettyServerHandler.getComment();
@@ -33,8 +31,6 @@ public class CommendService implements Runnable {
                         // 执行命令
                         ps.println("收到命令" + command);
                         factory.processCommand(command);
-//                        CommandInterface resetCommand = factory.createCommand(command);
-//                        enhancer.addCommand(resetCommand);
                     }
                     TimeUnit.SECONDS.sleep(1);
                 } catch (Throwable e) {
