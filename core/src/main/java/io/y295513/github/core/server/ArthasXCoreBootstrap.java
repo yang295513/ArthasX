@@ -1,5 +1,6 @@
 package io.y295513.github.core.server;
 
+import com.alibaba.fastjson.JSON;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
@@ -146,7 +147,6 @@ public class ArthasXCoreBootstrap {
     }
 
     private void initSpy() throws Throwable {
-        // 将Spy添加到BootstrapClassLoader
         ps.println("初始化spy");
         ClassLoader parent = ClassLoader.getSystemClassLoader().getParent();
         Class<?> spyClass = null;
@@ -159,6 +159,7 @@ public class ArthasXCoreBootstrap {
         }
         if (spyClass == null) {
             File spyJar = new File(configure.getSpyJarPath());
+            // 将Spy添加到BootstrapClassLoader
             instrumentation.appendToBootstrapClassLoaderSearch(new JarFile(spyJar));
         }
     }
